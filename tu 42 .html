@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>javascript introduntion to callbacks </title>
+</head>
+
+<body>
+    <div class="cotainer">
+        hello work
+
+    </div>
+    <script>
+        function loadScript(src, callbacks) {
+            var script = document.createElement("script");
+            script.src = src;
+
+            script.onload = function () {
+                console.log(" loaded script with scr: " + src)
+                callbacks(null, src);
+            }
+
+            script.onerror = function () {
+                console.log("error loading script with scr: " + src)
+                callbacks(new Error("src got sum error"))
+            }
+
+            document.body.appendChild(script);
+        }
+        function hello(error, src) {
+            if (error) {
+                console.log(error)
+                return
+            }
+            alert("hello world " + src);
+        }
+        function goodmorning(error, src) {
+            if (error) {
+                console.log(error)
+                return
+            }
+            alert("Good morning " + src);
+        }
+
+        loadScript("https://cdmn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js", goodmorning)
+
+
+
+    </script>
+</body>
+
+</html>
